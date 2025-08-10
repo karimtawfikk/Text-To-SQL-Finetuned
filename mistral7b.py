@@ -4,7 +4,7 @@ from llama_cpp import Llama
 st.set_page_config(page_title="SQL Generator", layout="centered")
 st.title("🦥 Ask Anything, Get SQL — Powered by Mistral-7B")
 
-MODEL_PATH = "model_gguf/unsloth.Q4_K_M.gguf"  # Replace with your actual .gguf path
+MODEL_PATH = "model_gguf/unsloth.Q4_K_M.gguf"
 
 @st.cache_resource
 def load_mistral():
@@ -12,7 +12,7 @@ def load_mistral():
         model_path=MODEL_PATH,
         n_ctx=2048,
         n_threads=8,
-        n_gpu_layers=33,  # Adjust depending on your GPU capability
+        n_gpu_layers=33,
     )
 
 llm = load_mistral()
@@ -71,4 +71,5 @@ if user_input:
 
             output_text = response["choices"][0]["message"]["content"]
             st.markdown(output_text)
+
             st.session_state.chat_history.append({"role": "assistant", "content": output_text.strip()})
